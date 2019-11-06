@@ -1,0 +1,26 @@
+server:
+  port: 7001
+spring:
+  application:
+    name: search-server
+  data:
+    elasticsearch:
+      cluster-name: search-application
+      cluster-nodes: 127.0.0.1:9300
+host:
+  instance: localhost
+eureka:
+  client:
+    service-url:
+      defaultZone: http://${host.instance}:8761/eureka
+  instance:
+    prefer-ip-address: true
+feign:
+  compression:
+    response:
+      enabled: true
+    request:
+      enabled: true
+#超时配置
+ribbon:
+  ReadTimeout: 30000

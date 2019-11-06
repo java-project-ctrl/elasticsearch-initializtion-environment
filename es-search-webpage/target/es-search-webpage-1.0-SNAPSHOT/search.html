@@ -1,0 +1,124 @@
+<html>
+ <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,Chrome=1" />
+    <meta http-equiv="X-UA-Compatible" content="IE=9" />
+    <meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,minimum-scale=1,user-scalable=yes">
+    <title>带有搜索的下拉框</title>
+    <script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.min.js"></script>
+	<style>
+            body,
+            html {
+                width: 100%;
+                overflow: hidden;
+            }
+
+            .searchBox {
+                margin: 10px;
+            }
+
+            @media only screen and (min-width: 1200px) {
+                .searchBox {
+                    margin: 10px 20%;
+                }
+            }
+
+            .form-control {
+                width: 914px;
+                padding: 6px 16px;
+                font-size: 14px;
+                line-height: 1.52857143;
+                color: #3a3f51;
+                background-color: #ffffff;
+                background-image: none;
+                border: 1px solid #dde6e9;
+                border-radius: 4px;
+            }
+			
+    </style>
+	<script type="text/javascript">
+        $(function() {
+			
+            $(document.body).on("click", ".optionLi", function() {
+                var Member = $(this).text();
+                $(".addMemberToggle").val(Member);
+                $(".JnMemberSelect").hide();
+            });
+			$(document.body).on("click", ".addMemberToggle", function() {
+                $(".JnMemberSelect").toggle();
+                $(".addMemberToggle").val("");
+            });
+            //监听搜索框输入事件，有内容的话就进行查询
+            var searchItem = ''; //搜索框内容
+            $('#searchMember').on('input', function() {
+                var _v = $.trim($(this).val());
+                $('#searchResult').empty();
+                if(_v != '') {
+                    searchItem = _v;
+                    searchShopFn(_v);
+                } 
+            });
+            //模糊查询ajax请求数据  keyWord就是关键词
+            function searchShopFn(keyWord) {
+				//异步
+                $.ajax({
+                    type: "post",
+                    url: "",
+                    async: false,
+                    data: {
+                        typename: "",
+                        xmname: keyWord
+                    },
+                    success: function(strValue) {
+                        //将关键字传给后台，根据后台查询数据库，重新加载<li></li>数据
+                    }
+                })
+				
+				$.get("http://localhost:7001/find",{"keyword":keyWord},function(result){
+                    $.each(result,function (index,elements) {
+                        console.log(elements.name)
+                        $(".form-control").append("<li>"+elements.name+"</li>")
+                    })
+                },"json")
+            }
+        })
+    </script>
+ </head>
+ <body>
+    <div class="searchBox">
+        <div class="">
+            <div style="position: absolute; right: 30px; top: 5px;">
+                <em class="fa fa-angle-down"></em>
+            </div>
+			
+			<input type="text" class="form-control addMemberToggle" placeholder="搜索现有数据" id="searchMember" autofocus="autofocus" style="background-color:#fff;" required="required">
+            <!-- <input type="text" class="form-control addMemberToggle" placeholder="添加诊疗" readonly="" style="background-color:#fff;" required="required"> -->
+            <button type="submit" style="
+				width: 100px;
+				height: 32px;
+				color: #fff;
+				letter-spacing: 1px;
+				background: #3385ff;
+				border :none; ">百度一下</button>
+			
+            <div class="JnMemberSelect" style="display: none;">
+            <div id="JnMemberSelect">
+                <ul class="form-control" style="list-style: none;margin: 0;cursor:pointer;height:100px;width:880px;overflow-x:hidden;overflow-y:auto;" id="searchResult">
+                    <li class="optionLi"></li>
+                    <!--<li class="optionLi">哈密瓜</li>
+                    <li class="optionLi">桔子</li>
+                    <li class="optionLi">香蕉</li>
+                    <li class="optionLi">雪梨</li>
+                    <li class="optionLi">人参果</li>
+                    <li class="optionLi">百香果</li>
+                    <li class="optionLi">榴莲</li>
+                    <li class="optionLi">山竹</li>
+                    <li class="optionLi">樱桃</li>
+                    <li class="optionLi">西瓜</li>
+                    <li class="optionLi">羊角蜜</li>-->
+                </ul>
+            </div>
+        </div>
+    </div>
+ </body>
+</html>

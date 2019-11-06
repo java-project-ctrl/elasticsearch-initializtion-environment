@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.js"></script>
+    <script src="js/async_req.js"></script>
+    <link href="css/style.css" type="text/css" rel="stylesheet" />
+</head>
+<body>
+<div class="col-xs-7">
+    <input type="text" class="form-control" placeholder="请选择上报机构" id="reportOrgan"
+           οnblur="setTimeout('hideOrganDiv()',200);" οnfοcus="getOrganList();" οnkeydοwn="clearInput();"
+           οnkeyup="innerKeydown();" autocomplete="off">
+</div>
+<div id="organ" οnclick="hideOrganDiv();">
+</div>
+</body>
+</html>

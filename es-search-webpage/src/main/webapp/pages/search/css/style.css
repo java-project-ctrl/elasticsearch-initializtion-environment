@@ -1,0 +1,46 @@
+#organ {
+    height: auto;
+    width: 200px;
+    position: absolute;
+    display: none;
+    border: 1px solid silver;
+    background-color: white;
+    z-index: 10;
+}
+
+table.altrowstable {
+    font-family: verdana, arial, sans-serif;
+    font-size: 15px;
+    color: #333333;
+    border-width: 1px;
+    border-color: #a9c6c9;
+    border-collapse: collapse;
+    background: white;
+    display: block;
+    height: 300px;
+    overflow: auto;
+}
+
+table.altrowstables {
+    font-family: verdana, arial, sans-serif;
+    font-size: 15px;
+    color: #333333;
+    border-width: 1px;
+    border-color: #a9c6c9;
+    border-collapse: collapse;
+    background: white;
+}
+
+table.altrowstable tr {
+    border-width: 0px;
+    padding: 1px;
+    border-style: solid;
+    border-color: #a9c6c9;
+}
+
+table.altrowstable td {
+    border-width: 0px;
+    padding: 1px;
+    border-style: solid;
+    border-color: #a9c6c9;
+}
